@@ -25,15 +25,11 @@ namespace GearConsole
 
         private void button1_Click(object sender, EventArgs e)
         {
-            KompasObject kompas = KompasBuilder.GetKompas();
-            IApplication kompasApi7 = (IApplication)kompas.ksGetApplication7();
-            ksDocument3D doc = (ksDocument3D)kompas.ActiveDocument3D();
+            KompasObject kompas = GearBuilder.GetKompas();
+            ksDocument3D gearDocument = (ksDocument3D)kompas.ActiveDocument3D();
 
-            Gear gear = new Gear();
-            gear.SetValue(int.Parse(textBoxZ.Text), float.Parse(textBoxM.Text), float.Parse(textBoxd.Text), float.Parse(textBoxbw.Text));
-
-            KompasBuilder kompasBuilder = new KompasBuilder();
-            kompasBuilder.CreateGearKompas(gear, kompas, doc);
+            GearBuilder gearBuilder = new GearBuilder(int.Parse(tbZ.Text), float.Parse(tbModule.Text), float.Parse(tbDiameter.Text), float.Parse(tbGearWidth.Text), 30);
+            gearBuilder.CreateGearInKompas(kompas, gearDocument);
         }
     }
 }
