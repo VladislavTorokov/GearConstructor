@@ -78,10 +78,6 @@ namespace GearConsole
                     gearDocument = (ksDocument3D)kompas.Document3D();
                     gearDocument.Create(false, true);
 
-                    //doc.author = "Torokov Vladislav Viktorovich";
-                    //doc.comment = "3D Wheel";
-                    //doc.UpdateDocumentParam();
-
                     ksPart part = (ksPart)gearDocument.GetPart((short)Part_Type.pTop_Part);  // новый компонент
                     if (part != null)
                     {
@@ -127,10 +123,10 @@ namespace GearConsole
                     sketchEdit.ksLineSeg(-gear.Lc / 2, gear.d / 2, -gear.Lc / 2, gear.Dc / 2, 1);
                     sketchEdit.ksLineSeg(-gear.Lc / 2, gear.Dc / 2, -gear.ec / 2, gear.Dc / 2, 1);
                     sketchEdit.ksLineSeg(-gear.ec / 2, gear.Dc / 2, -gear.ec / 2, gear.Ra - gear.A1, 1);
-                    sketchEdit.ksLineSeg(-gear.ec / 2, gear.Ra - gear.A1, -gear.bw / 2, gear.Ra - gear.A1, 1);
-                    sketchEdit.ksLineSeg(-gear.bw / 2, gear.Ra - gear.A1, -gear.bw / 2, gear.Ra - gear.C1, 1);
-                    sketchEdit.ksLineSeg(-gear.bw / 2, gear.Ra - gear.C1, -gear.bw / 2 + gear.C1, gear.Ra, 1);
-                    sketchEdit.ksLineSeg(-gear.bw / 2 + gear.C1, gear.Ra, 0, gear.Ra, 1);
+                    sketchEdit.ksLineSeg(-gear.ec / 2, gear.Ra - gear.A1, -gear.Bw / 2, gear.Ra - gear.A1, 1);
+                    sketchEdit.ksLineSeg(-gear.Bw / 2, gear.Ra - gear.A1, -gear.Bw / 2, gear.Ra - gear.C1, 1);
+                    sketchEdit.ksLineSeg(-gear.Bw / 2, gear.Ra - gear.C1, -gear.Bw / 2 + gear.C1, gear.Ra, 1);
+                    sketchEdit.ksLineSeg(-gear.Bw / 2 + gear.C1, gear.Ra, 0, gear.Ra, 1);
 
                     sketchEdit.ksEndGroup();
                     sketchEdit.ksSymmetryObj(grp, 0, 0, 0, gear.Ra, "1");
@@ -198,7 +194,7 @@ namespace GearConsole
                 {
                     cutExtrDef.SetSketch(sketch);    // установим эскиз операции
                     cutExtrDef.directionType = (short)Direction_Type.dtBoth; //прямое направление
-                    cutExtrDef.SetSideParam(true, (short)End_Type.etBlind, gear.bw, 0, false);
+                    cutExtrDef.SetSideParam(true, (short)End_Type.etBlind, gear.Bw, 0, false);
                     cutExtrDef.SetThinParam(false, 0, 0, 0);
                 }
 
@@ -226,7 +222,7 @@ namespace GearConsole
                     circularCopyDefinition.SetAxis(part.GetDefaultEntity((short)Obj3dType.o3d_axisOX));
 
                     //Устанавливаем параметры копирования
-                    circularCopyDefinition.SetCopyParamAlongDir(gear.z1, gear.pAngle, false, false);
+                    circularCopyDefinition.SetCopyParamAlongDir(gear.Z1, gear.pAngle, false, false);
 
                     //Получаем массив копируемых элементов
                     ksEntityCollection EntityCollection = (ksEntityCollection)circularCopyDefinition.GetOperationArray();
